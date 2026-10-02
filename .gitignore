@@ -70,3 +70,9 @@ EarthRemoteSensingRapidResponse/UnprocessedImages/
 EarthRemoteSensingRapidResponse/Data Collection/images_with_cafo/
 EarthRemoteSensingRapidResponse/Data Collection/images_non_cafo/
 GTM_Model6_code.zip
+
+# Python virtual environments
+.venv/
+.venv-win/
+__pycache__/
+*.pyc
