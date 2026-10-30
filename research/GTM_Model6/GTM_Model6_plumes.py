@@ -22,9 +22,9 @@ from sklearn.metrics import average_precision_score
 
 from GTM_Model6_reconstruction import ROOT, Block, digest, write_json
 
-DATA = ROOT.parent/'Earth-Remote-Sensing-Rapid-Response-'
-PAIRS = DATA/'EarthRemoteSensingRapidResponse/Data Collection/s2_emit_pairs'
-MARS = PAIRS/'publication-v1/external/MARS-S2L'
+DATA = ROOT
+PAIRS = DATA / 'EarthRemoteSensingRapidResponse/Data Collection/s2_emit_pairs'
+MARS = PAIRS / 'publication-v1/external/MARS-S2L'
 SEED = 6192026
 WINDOWS = (16,32,64,128)
 BANDS = [0,1,2,4,5]
