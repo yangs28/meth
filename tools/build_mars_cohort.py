@@ -107,7 +107,7 @@ def haversine_km(left: tuple[float, float], right: tuple[float, float]) -> float
 
 
 def read_cohort(metadata_dir: Path) -> tuple[list[dict[str, Any]], dict[str, tuple[float, float]]]:
-    csv.field_size_limit(sys.maxsize)
+    csv.field_size_limit(2**31 - 1)
     rows: list[dict[str, Any]] = []
     locations: dict[str, tuple[float, float]] = {}
     train_validation_locations: set[str] = set()
