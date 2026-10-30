@@ -69,6 +69,14 @@ def repo_root() -> Path:
     return Path(output).resolve()
 
 
+def report_path(root: Path, path: Path) -> str:
+    """Return a readable path even when data resolves outside the Git repo."""
+    try:
+        return path.relative_to(root).as_posix()
+    except ValueError:
+        return path.as_posix()
+
+
 def sha256(path: Path) -> str:
     digest = hashlib.sha256()
     with path.open("rb") as source:
@@ -253,7 +261,7 @@ def main() -> int:
             "dry_run": True,
             "repository": REPO_ID,
             "revision": REVISION,
-            "output_dir": output_dir.relative_to(root).as_posix(),
+            "output_dir": report_path(root, output_dir),
             "file_count": len(METADATA_FILES),
             "total_bytes": sum(int(item["size"]) for item in METADATA_FILES),
             "files": list(METADATA_FILES),
@@ -276,8 +284,8 @@ def main() -> int:
             "verify_only": bool(args.verify_only),
             "repository": REPO_ID,
             "revision": REVISION,
-            "output_dir": output_dir.relative_to(root).as_posix(),
-            "manifest": manifest.relative_to(root).as_posix(),
+            "output_dir": report_path(root, output_dir),
+            "manifest": report_path(root, manifest),
             "file_count": len(files),
             "total_bytes": sum(int(item["size"]) for item in files),
             "statuses": {item["path"]: item["status"] for item in files},

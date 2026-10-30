@@ -32,6 +32,7 @@ from acquire_mars_metadata import (
     USER_AGENT,
     checked_output_dir,
     repo_root,
+    report_path,
     sha256,
     verify_files,
 )
@@ -327,7 +328,7 @@ def write_receipt(
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
         "operation": "verify_only" if payload.get("verify_only") else "acquire_and_verify",
         "catalog": {
-            "path": catalog_path.relative_to(root).as_posix(),
+            "path": report_path(root, catalog_path),
             "sha256": sha256(catalog_path),
             "asset_count": payload["selected_asset_count"],
             "total_bytes": payload["selected_total_bytes"],
@@ -432,11 +433,11 @@ def main() -> int:
         )
         state["missing_only"] = bool(args.missing_only)
         state["source_catalog_asset_count"] = full_catalog_total
-        state["metadata_dir"] = metadata_dir.relative_to(root).as_posix()
-        state["remote_catalog"] = catalog_path.relative_to(root).as_posix()
+        state["metadata_dir"] = report_path(root, metadata_dir)
+        state["remote_catalog"] = report_path(root, catalog_path)
         if manifest_path is not None:
             state["manifest_filter"] = {
-                "path": manifest_path.relative_to(root).as_posix(),
+                "path": report_path(root, manifest_path),
                 "sha256": sha256(manifest_path),
             }
         if args.dry_run:
@@ -488,11 +489,11 @@ def main() -> int:
         )
         final_state["missing_only"] = bool(args.missing_only)
         final_state["source_catalog_asset_count"] = full_catalog_total
-        final_state["metadata_dir"] = metadata_dir.relative_to(root).as_posix()
-        final_state["remote_catalog"] = catalog_path.relative_to(root).as_posix()
+        final_state["metadata_dir"] = report_path(root, metadata_dir)
+        final_state["remote_catalog"] = report_path(root, catalog_path)
         if manifest_path is not None:
             final_state["manifest_filter"] = {
-                "path": manifest_path.relative_to(root).as_posix(),
+                "path": report_path(root, manifest_path),
                 "sha256": sha256(manifest_path),
             }
         payload = {
