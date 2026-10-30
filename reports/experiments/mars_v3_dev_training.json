@@ -1,0 +1,240 @@
+{
+  "artifact": {
+    "bytes": 57105245,
+    "path": "EarthRemoteSensingRapidResponse/artifacts/mars_v3_dev_seed303.pt",
+    "sha256": "a54529aa5ad45d1b8a15061a69645e7566a2d7b11eed9d2cf337b6e0dd4c022a",
+    "tracked": false
+  },
+  "cohort": {
+    "group_overlap": 0,
+    "strict_spatial_test_loaded": false,
+    "training": 768,
+    "training_groups": 98,
+    "validation": 384,
+    "validation_groups": 24
+  },
+  "decision": "Freeze this validation-selected checkpoint before any strict-spatial evaluation.",
+  "generated_at_utc": "2026-10-30T17:23:18.331866+00:00",
+  "model": {
+    "heads": [
+      "segmentation",
+      "proposal_presence",
+      "quality"
+    ],
+    "initialization": "from_scratch_required_for_primary_experiment",
+    "input_channels": [
+      "mbmp_release",
+      "target_B02",
+      "target_B03",
+      "target_B04",
+      "target_B08",
+      "target_B11",
+      "target_B12",
+      "reference_B02",
+      "reference_B03",
+      "reference_B04",
+      "reference_B08",
+      "reference_B11",
+      "reference_B12",
+      "wind_u_div8",
+      "wind_v_div8",
+      "cloud_binary"
+    ],
+    "model_name": "ersrr_mars_full_unet_proposal_v3",
+    "normalization": "GroupNorm",
+    "parameter_count": 14268915,
+    "schema_version": 1,
+    "topk_fraction": 0.01
+  },
+  "operating_rule": {
+    "lower_no_plume_threshold": 0.42431640625,
+    "lower_selection": {
+      "accepted_samples": 75,
+      "npv": 0.9520645467489322,
+      "weighted_coverage": 0.22150967199327165
+    },
+    "quality_selection": {
+      "fn": 16,
+      "fp": 21,
+      "recall_high_quality": 0.9550561797752809,
+      "specificity_low_quality": 0.25,
+      "tn": 7,
+      "tp": 340
+    },
+    "quality_threshold": 0.8916015625,
+    "segmentation": {
+      "minimum_connected_pixels": 200,
+      "pixel_threshold": 0.7197265625
+    },
+    "selected_on": "internal_validation_only",
+    "upper_plume_threshold": 0.514892578125
+  },
+  "provenance": {
+    "adapter_source": "EarthRemoteSensingRapidResponse/mars_s2l_adapter.py",
+    "adapter_source_sha256": "6c82aecd58918567b34f422e4c6f4e817e5578a6bc24ea284791f3d44b63fd36",
+    "git_commit": "521e61dade964261ee596a3be6a7d47b231f9f74",
+    "git_tracked_worktree_dirty_at_start": true,
+    "model_source": "EarthRemoteSensingRapidResponse/mars_v3_model.py",
+    "model_source_sha256": "16fea9c93c587abdce16357861f1475966932c92221944556f6fd5553482ca5a",
+    "script": "tools/train_mars_v3.py",
+    "script_sha256": "e1f5abbf2daf996c897c390b06edf5d435a42f8c78abb1027bf38360f3402abb"
+  },
+  "runtime": {
+    "cuda_runtime": "13.0",
+    "device": "NVIDIA GeForce RTX 5070 Ti",
+    "numpy": "2.5.3",
+    "rasterio": "1.5.1",
+    "sklearn": "1.9.1",
+    "torch": "2.14.1+cu130"
+  },
+  "schema_version": 1,
+  "scope": "v3_internal_validation_selection",
+  "smoke_test": false,
+  "source": {
+    "dataset": "UNEP-IMEO/MARS-S2L",
+    "manifest": "EarthRemoteSensingRapidResponse/Data Collection/s2_emit_pairs/publication-v1/external/MARS-S2L/publication_dev_samples.jsonl",
+    "manifest_sha256": "e59985b592a4bd1cf0561717c680116242266bf19b86069160a00debd72de3d3",
+    "revision": "c26b1d7e31a0c5241fa37c9140802622c215eb32"
+  },
+  "training": {
+    "batch_size": 8,
+    "best_epoch": 5,
+    "history": [
+      {
+        "epoch": 1,
+        "learning_rate": 0.00018090169943749476,
+        "seconds": 24.207,
+        "training": {
+          "dice_loss": 0.9728271892915169,
+          "presence_focal": 0.39597982199241716,
+          "quality_bce": 0.3055099371898298,
+          "segmentation_bce": 0.5619280223424236,
+          "total": 1.657586860160033
+        },
+        "validation": {
+          "observed_fpr": 0.03125,
+          "positive_soft_dice": 0.08556270599365234,
+          "presence_auroc": 0.5854034423828125,
+          "presence_average_precision": 0.3796613434064621,
+          "presence_threshold": 0.551025390625,
+          "recall_at_fpr5": 0.0390625
+        }
+      },
+      {
+        "epoch": 2,
+        "learning_rate": 0.00013090169943749474,
+        "seconds": 7.245,
+        "training": {
+          "dice_loss": 0.957724633316199,
+          "presence_focal": 0.3829809573168556,
+          "quality_bce": 0.26993376672423136,
+          "segmentation_bce": 0.4960750367802878,
+          "total": 1.5629054804642994
+        },
+        "validation": {
+          "observed_fpr": 0.0390625,
+          "positive_soft_dice": 0.1386810839176178,
+          "presence_auroc": 0.5258026123046875,
+          "presence_average_precision": 0.3369273474211937,
+          "presence_threshold": 0.531982421875,
+          "recall_at_fpr5": 0.03125
+        }
+      },
+      {
+        "epoch": 3,
+        "learning_rate": 6.909830056250526e-05,
+        "seconds": 7.703,
+        "training": {
+          "dice_loss": 0.9487324307362238,
+          "presence_focal": 0.3803292739515503,
+          "quality_bce": 0.27808284705194336,
+          "segmentation_bce": 0.4124168866934876,
+          "total": 1.4711811617016792
+        },
+        "validation": {
+          "observed_fpr": 0.04296875,
+          "positive_soft_dice": 0.17913128435611725,
+          "presence_auroc": 0.476287841796875,
+          "presence_average_precision": 0.31796233080924474,
+          "presence_threshold": 0.510009765625,
+          "recall_at_fpr5": 0.03125
+        }
+      },
+      {
+        "epoch": 4,
+        "learning_rate": 1.9098300562505263e-05,
+        "seconds": 7.4,
+        "training": {
+          "dice_loss": 0.9186607773105303,
+          "presence_focal": 0.35089915835609037,
+          "quality_bce": 0.3377875880493472,
+          "segmentation_bce": 0.3572588529593001,
+          "total": 1.3598273620009422
+        },
+        "validation": {
+          "observed_fpr": 0.02734375,
+          "positive_soft_dice": 0.22952900826931,
+          "presence_auroc": 0.4754486083984375,
+          "presence_average_precision": 0.3179599499849599,
+          "presence_threshold": 0.4910888671875,
+          "recall_at_fpr5": 0.03125
+        }
+      },
+      {
+        "epoch": 5,
+        "learning_rate": 0.0,
+        "seconds": 7.274,
+        "training": {
+          "dice_loss": 0.9150639263292154,
+          "presence_focal": 0.3428120131914814,
+          "quality_bce": 0.30575168295763433,
+          "segmentation_bce": 0.3178504044190049,
+          "total": 1.3048879833271105
+        },
+        "validation": {
+          "observed_fpr": 0.0390625,
+          "positive_soft_dice": 0.24394293129444122,
+          "presence_auroc": 0.4923553466796875,
+          "presence_average_precision": 0.3369753964074465,
+          "presence_threshold": 0.514892578125,
+          "recall_at_fpr5": 0.0625
+        }
+      }
+    ],
+    "learning_rate": 0.0002,
+    "seed": 303,
+    "small_plume_presence_weighting": "sqrt(1000/(valid_truth_pixels+1)), clipped [0.75,3]"
+  },
+  "validation": {
+    "presence_auroc": 0.4923553466796875,
+    "presence_average_precision": 0.3369753964074465,
+    "scene": {
+      "accuracy": 0.6614583333333334,
+      "auroc": 0.4923553466796875,
+      "average_precision": 0.3369753964074465,
+      "brier": 0.23460038006305695,
+      "false_positive_rate": 0.0390625,
+      "fn": 120.0,
+      "fp": 10.0,
+      "negative_predictive_value": 0.6721311475409836,
+      "precision": 0.4444444444444444,
+      "recall": 0.0625,
+      "specificity": 0.9609375,
+      "tn": 246.0,
+      "tp": 8.0
+    },
+    "segmentation": {
+      "false_positive_rate": 0.64453125,
+      "fn": 17,
+      "fp": 165,
+      "pixel_dice": 0.2900923470000249,
+      "precision": 0.40217391304347827,
+      "predicted_positive_pixels": 275528,
+      "recall": 0.8671875,
+      "specificity": 0.35546875,
+      "tn": 91,
+      "tp": 111,
+      "truth_positive_pixels": 165959
+    }
+  }
+}

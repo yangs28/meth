@@ -77,3 +77,8 @@ GTM_Model6_code.zip
 .venv-win/
 __pycache__/
 *.pyc
+
+# Large local remote-sensing datasets
+/EarthRemoteSensingRapidResponse/Data Collection/s2_emit_pairs/
+/EarthRemoteSensingRapidResponse/Data Collection/s2_emit_pairs.backup/
+

@@ -1,0 +1,420 @@
+{
+  "artifact": {
+    "bytes": 57105401,
+    "path": "EarthRemoteSensingRapidResponse/artifacts/mars_v3_dev15_seed303.pt",
+    "sha256": "95dbb87d9dfea752849bc0ec7fb6af9fe8743ad4c24fc0f1b6a5ca14f484f9a2",
+    "tracked": false
+  },
+  "cohort": {
+    "group_overlap": 0,
+    "strict_spatial_test_loaded": false,
+    "training": 768,
+    "training_groups": 98,
+    "validation": 384,
+    "validation_groups": 24
+  },
+  "decision": "Freeze this validation-selected checkpoint before any strict-spatial evaluation.",
+  "generated_at_utc": "2026-10-30T17:31:05.068075+00:00",
+  "model": {
+    "heads": [
+      "segmentation",
+      "proposal_presence",
+      "quality"
+    ],
+    "initialization": "from_scratch_required_for_primary_experiment",
+    "input_channels": [
+      "mbmp_release",
+      "target_B02",
+      "target_B03",
+      "target_B04",
+      "target_B08",
+      "target_B11",
+      "target_B12",
+      "reference_B02",
+      "reference_B03",
+      "reference_B04",
+      "reference_B08",
+      "reference_B11",
+      "reference_B12",
+      "wind_u_div8",
+      "wind_v_div8",
+      "cloud_binary"
+    ],
+    "model_name": "ersrr_mars_full_unet_proposal_v3",
+    "normalization": "GroupNorm",
+    "parameter_count": 14268915,
+    "schema_version": 1,
+    "topk_fraction": 0.01
+  },
+  "operating_rule": {
+    "lower_no_plume_threshold": 0.529541015625,
+    "lower_selection": {
+      "accepted_samples": 186,
+      "npv": 0.9501210537093024,
+      "weighted_coverage": 0.5455017346509672
+    },
+    "quality_selection": {
+      "fn": 17,
+      "fp": 23,
+      "recall_high_quality": 0.952247191011236,
+      "specificity_low_quality": 0.17857142857142858,
+      "tn": 5,
+      "tp": 339
+    },
+    "quality_threshold": 0.89892578125,
+    "segmentation": {
+      "minimum_connected_pixels": 200,
+      "pixel_threshold": 0.8212890625
+    },
+    "selected_on": "internal_validation_only",
+    "upper_plume_threshold": 0.561767578125
+  },
+  "provenance": {
+    "adapter_source": "EarthRemoteSensingRapidResponse/mars_s2l_adapter.py",
+    "adapter_source_sha256": "6c82aecd58918567b34f422e4c6f4e817e5578a6bc24ea284791f3d44b63fd36",
+    "git_commit": "521e61dade964261ee596a3be6a7d47b231f9f74",
+    "git_tracked_worktree_dirty_at_start": true,
+    "model_source": "EarthRemoteSensingRapidResponse/mars_v3_model.py",
+    "model_source_sha256": "16fea9c93c587abdce16357861f1475966932c92221944556f6fd5553482ca5a",
+    "script": "tools/train_mars_v3.py",
+    "script_sha256": "e1f5abbf2daf996c897c390b06edf5d435a42f8c78abb1027bf38360f3402abb"
+  },
+  "runtime": {
+    "cuda_runtime": "13.0",
+    "device": "NVIDIA GeForce RTX 5070 Ti",
+    "numpy": "2.5.3",
+    "rasterio": "1.5.1",
+    "sklearn": "1.9.1",
+    "torch": "2.14.1+cu130"
+  },
+  "schema_version": 1,
+  "scope": "v3_internal_validation_selection",
+  "smoke_test": false,
+  "source": {
+    "dataset": "UNEP-IMEO/MARS-S2L",
+    "manifest": "EarthRemoteSensingRapidResponse/Data Collection/s2_emit_pairs/publication-v1/external/MARS-S2L/publication_dev_samples.jsonl",
+    "manifest_sha256": "e59985b592a4bd1cf0561717c680116242266bf19b86069160a00debd72de3d3",
+    "revision": "c26b1d7e31a0c5241fa37c9140802622c215eb32"
+  },
+  "training": {
+    "batch_size": 8,
+    "best_epoch": 7,
+    "history": [
+      {
+        "epoch": 1,
+        "learning_rate": 0.00019781476007338058,
+        "seconds": 23.096,
+        "training": {
+          "dice_loss": 0.9717508641382059,
+          "presence_focal": 0.39682772010564804,
+          "quality_bce": 0.30291514793255675,
+          "segmentation_bce": 0.5567179264811178,
+          "total": 1.6529806951681774
+        },
+        "validation": {
+          "observed_fpr": 0.04296875,
+          "positive_soft_dice": 0.08793260902166367,
+          "presence_auroc": 0.545166015625,
+          "presence_average_precision": 0.3578004673896067,
+          "presence_threshold": 0.512939453125,
+          "recall_at_fpr5": 0.0625
+        }
+      },
+      {
+        "epoch": 2,
+        "learning_rate": 0.0001913545457642601,
+        "seconds": 6.998,
+        "training": {
+          "dice_loss": 0.9643217287957668,
+          "presence_focal": 0.3810854107141495,
+          "quality_bce": 0.26884180839018273,
+          "segmentation_bce": 0.5218891811867555,
+          "total": 1.5891202415029209
+        },
+        "validation": {
+          "observed_fpr": 0.0390625,
+          "positive_soft_dice": 0.12444781512022018,
+          "presence_auroc": 0.5576934814453125,
+          "presence_average_precision": 0.3521133404441402,
+          "presence_threshold": 0.538330078125,
+          "recall_at_fpr5": 0.0390625
+        }
+      },
+      {
+        "epoch": 3,
+        "learning_rate": 0.00018090169943749476,
+        "seconds": 7.935,
+        "training": {
+          "dice_loss": 0.9498978517949581,
+          "presence_focal": 0.3842978623385231,
+          "quality_bce": 0.2800058202119544,
+          "segmentation_bce": 0.41821337180833024,
+          "total": 1.48360937833786
+        },
+        "validation": {
+          "observed_fpr": 0.04296875,
+          "positive_soft_dice": 0.16626188158988953,
+          "presence_auroc": 0.5871734619140625,
+          "presence_average_precision": 0.441413004522868,
+          "presence_threshold": 0.4815673828125,
+          "recall_at_fpr5": 0.15625
+        }
+      },
+      {
+        "epoch": 4,
+        "learning_rate": 0.00016691306063588583,
+        "seconds": 8.225,
+        "training": {
+          "dice_loss": 0.9275406530747811,
+          "presence_focal": 0.35636929313962656,
+          "quality_bce": 0.3380294448385636,
+          "segmentation_bce": 0.3850395542879899,
+          "total": 1.400265285745263
+        },
+        "validation": {
+          "observed_fpr": 0.04296875,
+          "positive_soft_dice": 0.18731236457824707,
+          "presence_auroc": 0.4959564208984375,
+          "presence_average_precision": 0.3252083163615108,
+          "presence_threshold": 0.482666015625,
+          "recall_at_fpr5": 0.046875
+        }
+      },
+      {
+        "epoch": 5,
+        "learning_rate": 0.00015000000000000001,
+        "seconds": 7.901,
+        "training": {
+          "dice_loss": 0.9275899964074293,
+          "presence_focal": 0.3597738243018587,
+          "quality_bce": 0.30688284640200436,
+          "segmentation_bce": 0.35638614239481586,
+          "total": 1.3751860180248816
+        },
+        "validation": {
+          "observed_fpr": 0.04296875,
+          "positive_soft_dice": 0.18514588475227356,
+          "presence_auroc": 0.571136474609375,
+          "presence_average_precision": 0.39552330384494117,
+          "presence_threshold": 0.4747314453125,
+          "recall_at_fpr5": 0.078125
+        }
+      },
+      {
+        "epoch": 6,
+        "learning_rate": 0.00013090169943749476,
+        "seconds": 7.347,
+        "training": {
+          "dice_loss": 0.9252218001832565,
+          "presence_focal": 0.36273927877967554,
+          "quality_bce": 0.29592801987503964,
+          "segmentation_bce": 0.3334517160740991,
+          "total": 1.3549679374943178
+        },
+        "validation": {
+          "observed_fpr": 0.02734375,
+          "positive_soft_dice": 0.21512098610401154,
+          "presence_auroc": 0.659149169921875,
+          "presence_average_precision": 0.49251175447844103,
+          "presence_threshold": 0.527099609375,
+          "recall_at_fpr5": 0.0859375
+        }
+      },
+      {
+        "epoch": 7,
+        "learning_rate": 0.00011045284632676538,
+        "seconds": 7.376,
+        "training": {
+          "dice_loss": 0.9143204589684805,
+          "presence_focal": 0.33947121864184737,
+          "quality_bce": 0.2992000910065447,
+          "segmentation_bce": 0.3472971509521206,
+          "total": 1.3286242137352626
+        },
+        "validation": {
+          "observed_fpr": 0.046875,
+          "positive_soft_dice": 0.2269500195980072,
+          "presence_auroc": 0.673065185546875,
+          "presence_average_precision": 0.48926127030726413,
+          "presence_threshold": 0.561767578125,
+          "recall_at_fpr5": 0.1796875
+        }
+      },
+      {
+        "epoch": 8,
+        "learning_rate": 8.954715367323469e-05,
+        "seconds": 7.431,
+        "training": {
+          "dice_loss": 0.9123535081744194,
+          "presence_focal": 0.3419963779548804,
+          "quality_bce": 0.3142422415160884,
+          "segmentation_bce": 0.30674034690794844,
+          "total": 1.2916237755368154
+        },
+        "validation": {
+          "observed_fpr": 0.046875,
+          "positive_soft_dice": 0.2460705041885376,
+          "presence_auroc": 0.63177490234375,
+          "presence_average_precision": 0.4404995689951964,
+          "presence_threshold": 0.566650390625,
+          "recall_at_fpr5": 0.125
+        }
+      },
+      {
+        "epoch": 9,
+        "learning_rate": 6.909830056250529e-05,
+        "seconds": 7.363,
+        "training": {
+          "dice_loss": 0.9004320135960976,
+          "presence_focal": 0.3408845951780677,
+          "quality_bce": 0.31409060761022073,
+          "segmentation_bce": 0.3133989688940346,
+          "total": 1.2906463959564765
+        },
+        "validation": {
+          "observed_fpr": 0.046875,
+          "positive_soft_dice": 0.26223528385162354,
+          "presence_auroc": 0.619537353515625,
+          "presence_average_precision": 0.44613294109147966,
+          "presence_threshold": 0.599365234375,
+          "recall_at_fpr5": 0.1484375
+        }
+      },
+      {
+        "epoch": 10,
+        "learning_rate": 5.0000000000000036e-05,
+        "seconds": 7.417,
+        "training": {
+          "dice_loss": 0.8990872347106537,
+          "presence_focal": 0.35288519753764075,
+          "quality_bce": 0.306930904276669,
+          "segmentation_bce": 0.3100739784228305,
+          "total": 1.3042919387420018
+        },
+        "validation": {
+          "observed_fpr": 0.03515625,
+          "positive_soft_dice": 0.27761995792388916,
+          "presence_auroc": 0.6328125,
+          "presence_average_precision": 0.4645511418840318,
+          "presence_threshold": 0.56396484375,
+          "recall_at_fpr5": 0.1328125
+        }
+      },
+      {
+        "epoch": 11,
+        "learning_rate": 3.308693936411422e-05,
+        "seconds": 7.363,
+        "training": {
+          "dice_loss": 0.8782885236044725,
+          "presence_focal": 0.31112993345595896,
+          "quality_bce": 0.2985986089333892,
+          "segmentation_bce": 0.28448716131970286,
+          "total": 1.205256247272094
+        },
+        "validation": {
+          "observed_fpr": 0.046875,
+          "positive_soft_dice": 0.2808385193347931,
+          "presence_auroc": 0.643402099609375,
+          "presence_average_precision": 0.4819685433478441,
+          "presence_threshold": 0.60400390625,
+          "recall_at_fpr5": 0.1640625
+        }
+      },
+      {
+        "epoch": 12,
+        "learning_rate": 1.909830056250527e-05,
+        "seconds": 7.428,
+        "training": {
+          "dice_loss": 0.8822162455568711,
+          "presence_focal": 0.33768870898832876,
+          "quality_bce": 0.3267429439195742,
+          "segmentation_bce": 0.2691652490757406,
+          "total": 1.233143584181865
+        },
+        "validation": {
+          "observed_fpr": 0.04296875,
+          "positive_soft_dice": 0.2777109146118164,
+          "presence_auroc": 0.64697265625,
+          "presence_average_precision": 0.5156254046342374,
+          "presence_threshold": 0.611572265625,
+          "recall_at_fpr5": 0.1328125
+        }
+      },
+      {
+        "epoch": 13,
+        "learning_rate": 8.645454235739904e-06,
+        "seconds": 7.926,
+        "training": {
+          "dice_loss": 0.8743092405299345,
+          "presence_focal": 0.3087669888821741,
+          "quality_bce": 0.2883517335479458,
+          "segmentation_bce": 0.25347036581176025,
+          "total": 1.168193052833279
+        },
+        "validation": {
+          "observed_fpr": 0.04296875,
+          "positive_soft_dice": 0.2962074875831604,
+          "presence_auroc": 0.6568756103515625,
+          "presence_average_precision": 0.4893850593346589,
+          "presence_threshold": 0.616943359375,
+          "recall_at_fpr5": 0.171875
+        }
+      },
+      {
+        "epoch": 14,
+        "learning_rate": 2.185239926619432e-06,
+        "seconds": 7.902,
+        "training": {
+          "dice_loss": 0.8663009628653526,
+          "presence_focal": 0.2752298032864928,
+          "quality_bce": 0.29914998014767963,
+          "segmentation_bce": 0.2561535737477243,
+          "total": 1.1171062588691711
+        },
+        "validation": {
+          "observed_fpr": 0.046875,
+          "positive_soft_dice": 0.29475611448287964,
+          "presence_auroc": 0.650970458984375,
+          "presence_average_precision": 0.48267009873916433,
+          "presence_threshold": 0.627685546875,
+          "recall_at_fpr5": 0.1484375
+        }
+      }
+    ],
+    "learning_rate": 0.0002,
+    "seed": 303,
+    "small_plume_presence_weighting": "sqrt(1000/(valid_truth_pixels+1)), clipped [0.75,3]"
+  },
+  "validation": {
+    "presence_auroc": 0.673065185546875,
+    "presence_average_precision": 0.48926127030726413,
+    "scene": {
+      "accuracy": 0.6953125,
+      "auroc": 0.673065185546875,
+      "average_precision": 0.48926127030726413,
+      "brier": 0.23841440677642822,
+      "false_positive_rate": 0.046875,
+      "fn": 105.0,
+      "fp": 12.0,
+      "negative_predictive_value": 0.6991404011461319,
+      "precision": 0.6571428571428571,
+      "recall": 0.1796875,
+      "specificity": 0.953125,
+      "tn": 244.0,
+      "tp": 23.0
+    },
+    "segmentation": {
+      "false_positive_rate": 0.40234375,
+      "fn": 40,
+      "fp": 103,
+      "pixel_dice": 0.30660966918412935,
+      "precision": 0.4607329842931937,
+      "predicted_positive_pixels": 134873,
+      "recall": 0.6875,
+      "specificity": 0.59765625,
+      "tn": 153,
+      "tp": 88,
+      "truth_positive_pixels": 165959
+    }
+  }
+}
