@@ -82,3 +82,5 @@ __pycache__/
 /EarthRemoteSensingRapidResponse/Data Collection/s2_emit_pairs/
 /EarthRemoteSensingRapidResponse/Data Collection/s2_emit_pairs.backup/
 
+/EarthRemoteSensingRapidResponse/Data Collection/ground_truth/stanford_2024_2025/
+/reports/ground_truth/local/
